@@ -44,8 +44,6 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             FirulaisAgesConverterTheme {
-                //SimpleTextField()
-                //LabelAndPlaceHolder()
                 Column(
                     //modifier = Modifier.fillMaxHeight(),
                     verticalArrangement = Arrangement.Center
@@ -56,26 +54,22 @@ class MainActivity : ComponentActivity() {
                     ) {
                         GreetingImage()
                     }
-                    Column(
-                        //modifier = Modifier.fillMaxHeight(),
-                        verticalArrangement = Arrangement.Center
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 20.dp),
+                        contentAlignment = Alignment.TopCenter
                     ) {
-                        Box(
-                            modifier = Modifier.fillMaxWidth().padding(vertical = 20.dp),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            TextFieldWithIcons()
-                        }
-
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth(),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            ButtonWithRoundCornerShape()
-                        }
+                        TextFieldWithIcons()
                     }
 
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        ButtonWithRoundCornerShape()
+                    }
                 }
 
             }
@@ -92,9 +86,9 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun GreetingImage(){
+fun GreetingImage() {
     val imagen = painterResource(id = R.drawable.perro_2)
-    Box{
+    Box {
         Image(
             painter = imagen,
             contentDescription = null,
@@ -109,7 +103,12 @@ fun TextFieldWithIcons() {
     var text by remember { mutableStateOf(TextFieldValue("")) }
     return OutlinedTextField(
         value = text,
-        leadingIcon = { Icon(imageVector = Icons.Default.DateRange, contentDescription = "dogYears") },
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Default.DateRange,
+                contentDescription = "dogYears"
+            )
+        },
         onValueChange = {
             text = it
         },
